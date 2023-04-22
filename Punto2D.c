@@ -45,9 +45,19 @@ Punto2D *allocateScanArrayPunto2D(const char etiche[], int *n)
     return a;
 } /* allocateScanArrayPunto2D */
 
-double distanzaEuclidea(const Punto2D *a, const Punto2D *b)
+int scanSizeArrayPunto2D(const char etiche[], Punto2D a[]) {
+    int n = scanInt("Grandezza dell'array: ");
+    scanArrayPunto2D(etiche, a, n);
+    return n;
+} /* scanSizeArrayPunto2D */
+
+/*
+invece di calcolare la distanza calcolo il quadrato della distanza cosi evito di fare la sqrt
+tanto per i confronti e' uguale quindi meglio fare cosi, risparmio circa 10ms suun array di 500 punti
+*/
+double distanzaEuclideaAlla2(const Punto2D *a, const Punto2D *b)
 {
-    return sqrt(pow((a->x) - (b->x), 2) + pow((a->y) - (b->y), 2));
+    return (pow((a->x) - (b->x), 2) + pow((a->y) - (b->y), 2));
 }
 int trovaIsolato(const Punto2D aP[], int nP){
     int i,indiceMax=-1;
@@ -63,7 +73,6 @@ int trovaIsolato(const Punto2D aP[], int nP){
        }
         
     }
-    
     return indiceMax;
 }
 
@@ -72,10 +81,14 @@ double distanzaMinima(const Punto2D aP[],int nP, int iPunto){
     double dMin=DBL_MAX;
     double dCorrente;
     for (i = 0; i < nP; i++){
-        if (i!=iPunto && (dCorrente=distanzaEuclidea(&aP[i],&aP[iPunto]))<dMin)
+        if (i!=iPunto && (dCorrente=distanzaEuclideaAlla2(&aP[i],&aP[iPunto]))<dMin)
         {
           dMin=dCorrente; 
         } 
     }
     return dMin;
 }
+
+
+
+
