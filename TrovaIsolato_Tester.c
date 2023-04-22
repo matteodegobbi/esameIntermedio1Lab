@@ -1,14 +1,15 @@
 /*De Gobbi Matteo*/
 #include <stdlib.h>
+#include <stdio.h>
 #include "Punto2D.h"
 int main(void)
 {
-    int nP=0;
-    Punto2D *aP=0;
-    /*leggi nP TODO*/
-    aP=allocateScanArrayPunto2D("etichetta",&nP);   
-/*leggi aP array di punti prima x poi y TODO*/
-    
+    int nP;
+    Punto2D *aP;
+    aP=allocateScanArrayPunto2D("etichetta",&nP);  
+    /*printf("distanza euclidea tra 0,0 e 0,4: %f\n\n",distanzaEuclidea(&aP[0],&aP[2]));*/
+    /*printf("%f\n",distanzaMinima(aP,nP,0));*/
+    printf("Indice del isolato%d\n",trovaIsolato(aP,nP));
     /*trovaIsolato TODO*/
     /*stampa risultato TODO*/   
     free(aP);

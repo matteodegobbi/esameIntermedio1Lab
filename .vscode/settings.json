@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "punto2d.h": "c"
+        "punto2d.h": "c",
+        "float.h": "c"
     }
 }
