@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "punto2d.h": "c",
-        "float.h": "c"
+        "float.h": "c",
+        "stdlib.h": "c"
     }
 }
