@@ -9,6 +9,6 @@ typedef struct BSPNodo
     Punto2D punto;
 }BSPNodo;
 
-void nearestSearchBSP(BSPNodo* root,double* distanzaMigliore,BSPNodo* nodoPiuVicino,Punto2D* puntoCercato,char asse);
+void nearestSearchBSP(BSPNodo* root,double* distanzaMigliore,double *secondaDistanzaMigliore,BSPNodo* nodoPiuVicino,BSPNodo* secondoNodoPiuVicino,Punto2D* puntoCercato,char asse);
 BSPNodo* buildBSP(Punto2D arrayCopia[], int nP, char asse);
 void preOrder(BSPNodo* root);

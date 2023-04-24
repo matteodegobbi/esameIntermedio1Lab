@@ -5,7 +5,7 @@
 #include <time.h>
 /*sta roba va rimossa*/
 #define MALLOC_NO
-#define N_ITER 1
+#define N_ITER 1000
 
 int main(void)
 {
@@ -31,16 +31,16 @@ int main(void)
     }
     end_t = clock();
     printf("passati: %fs\n",(double)(end_t-start_t)/CLOCKS_PER_SEC);
-
+    printf("Indice del isolato%d\n",result);
     start_t=clock();
     for (i = 0; i < N_ITER; i++)
     {   
-        trovaIsolatoMigliore(aP,nP);
+        result=trovaIsolatoMigliore(aP,nP);
     }
     end_t = clock();
     
     printf("passati: %fs\n",(double)(end_t-start_t)/CLOCKS_PER_SEC);
-    printf("Indice del isolato%d\n",result);
+    printf("Indice del isolato migliore%d\n",result);
    
     /*trovaIsolato TODO*/
     /*stampa risultato TODO*/   

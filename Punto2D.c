@@ -15,9 +15,7 @@
 #ifndef BSP
 #define BSP
 #include "BSP.h"
-#endif 
-
-
+#endif
 
 void printPunto2D(const char etiche[], const Punto2D *p)
 {
@@ -141,23 +139,25 @@ void scorriIndiciPartition(Punto2D aP[], int *lPt, int *rPt, char asse, Punto2D 
     /*sort lungo asse x*/
     if (asse == ASSE_X)
     {
-        while (((*lPt) <= (*rPt)) && (aP[(*lPt)].x <= pivot.x)) 
+        while (((*lPt) <= (*rPt)) && (aP[(*lPt)].x <= pivot.x))
         {
             (*lPt)++;
         }
-        while (((*lPt) <= (*rPt)) && (aP[(*rPt)].x >= pivot.x)) 
+        while (((*lPt) <= (*rPt)) && (aP[(*rPt)].x >= pivot.x))
         {
             (*rPt)--;
         }
-    }else{/*sort lungo l'asse y*/
-      while (((*lPt) <= (*rPt)) && (aP[(*lPt)].y <= pivot.y)) 
+    }
+    else
+    { /*sort lungo l'asse y*/
+        while (((*lPt) <= (*rPt)) && (aP[(*lPt)].y <= pivot.y))
         {
             (*lPt)++;
         }
-        while (((*lPt) <= (*rPt)) && (aP[(*rPt)].y >= pivot.y)) 
+        while (((*lPt) <= (*rPt)) && (aP[(*rPt)].y >= pivot.y))
         {
             (*rPt)--;
-        }  
+        }
     }
 }
 int partitionPunti2D(Punto2D aP[], int a, int b, char asse)
@@ -188,23 +188,44 @@ void quickSortPunti2D(Punto2D aP[], int l, int r, char asse)
     quickSortPunti2D(aP, pivot + 1, r, asse);
 }
 
-int trovaIsolatoMigliore(const Punto2D aP[], int nP){
+int trovaIsolatoMigliore(const Punto2D aP[], int nP)
+{
     Punto2D arrayCopia[100];
-    BSPNodo* root;
-    BSPNodo* nodoPiuVicino;
-    Punto2D* puntoCercato;
-    double distanzaMigliore=DBL_MAX;
+    BSPNodo *root;
+    BSPNodo *nodoPiuVicino = malloc(sizeof(BSPNodo));
+    BSPNodo *secondoNodoPiuVicino = malloc(sizeof(BSPNodo));
+    Punto2D *puntoCercato = malloc(sizeof(Punto2D));
+    double distanzaCandidataMax = DBL_MAX;
+    double secondaDistanzaCandidataMax = DBL_MAX;
+    double distanzaMax=-1;
+    int indiceMax=-1;
     int i;
     for (i = 0; i < nP; i++)
     {
         arrayCopia[i] = aP[i];
     }
-    root= buildBSP(arrayCopia,nP,ASSE_X);
+    root = buildBSP(arrayCopia, nP, ASSE_X);
+
+    for (i = 0; i < nP; i++)
+    {
+        distanzaCandidataMax = DBL_MAX;
+        secondaDistanzaCandidataMax = DBL_MAX-1;
+        puntoCercato->x=aP[i].x;
+        puntoCercato->y=aP[i].y;
+        nearestSearchBSP(root, &distanzaCandidataMax,&secondaDistanzaCandidataMax, nodoPiuVicino,secondoNodoPiuVicino, puntoCercato, ASSE_X);
+        if (secondaDistanzaCandidataMax>distanzaMax)
+        {
+            distanzaMax=secondaDistanzaCandidataMax;
+            indiceMax=i;
+        }
+    }
     
-    /*preOrder(root);*/
-    puntoCercato->x=0;
-    puntoCercato->y=0;
-    nearestSearchBSP(root,&distanzaMigliore,nodoPiuVicino,puntoCercato,ASSE_X);
+
     
-    return root->punto.x;
+
+    /*printPunto2D("nodo piu vicino", &nodoPiuVicino->punto);
+    printf("distanza al quadrato %f\n", distanzaCandidata);*/
+    free(nodoPiuVicino);
+    free(puntoCercato);
+    return indiceMax;
 }

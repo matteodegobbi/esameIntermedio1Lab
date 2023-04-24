@@ -2,7 +2,7 @@
 #define ASSE_X 1
 #define ASSE_Y 0
 /*punto sul piano cartesiano in 2 Dimensioni*/
-typedef struct {
+typedef struct Punto2D{
     double x,y;
 } Punto2D;
 
