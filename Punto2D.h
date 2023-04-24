@@ -1,6 +1,7 @@
 /*De Gobbi Matteo*/
 #define ASSE_X 1
 #define ASSE_Y 0
+#define SOGLIA_ALGORITMO 15 /*determinata sperimentalmente*/
 /*punto sul piano cartesiano in 2 Dimensioni*/
 typedef struct Punto2D{
     double x,y;

@@ -1,3 +1,4 @@
+/*De Gobbi Matteo*/
 #ifndef PUNTO2D
 #define PUNTO2D
 #include "Punto2D.h"
@@ -41,7 +42,7 @@ BSPNodo *buildBSP(Punto2D arrayCopia[], int nP, char asse) {
     nodoCorrente->figlioDx =
         buildBSP(arrayCopia + indiceMediana + 1, nP - indiceMediana - 1, !asse);
     return nodoCorrente;
-}
+} /*buildBSP*/
 
 /*Restituisce 1 se il puntoCercato si trova alla sinistra della root o 0 se si trova alla destra
 considerando se usare la relazione d'ordine lungo le x o le y
@@ -58,7 +59,8 @@ int isAllaSinistra(const Punto2D *root, const Punto2D *puntoCercato, char asse) 
     } else { /*asse y*/
         return ((puntoCercato->y) > (root->y)) ? 0 : 1;
     }
-}
+} /*isAllaSinistra*/
+
 /*funzione di appoggio per la nearestSearchBSP che determina se e' possibile ci sia un punto piu'
 vicino del migliore finora nel sottoalbero non ancora esaminato e restituisce 1 o 0 a seconda del
 caso IP asse indica se i confronti devono avvenire lungo l'asse x o y, puo' valere ASSE_X o ASSE_Y
@@ -82,9 +84,9 @@ int isAltroRamoPiuVicino(char asse, const BSPNodo *root, const Punto2D *puntoCer
     if (!asse && pow(root->punto.y - puntoCercato->y, 2) < *secondaDistanzaMigliore) {
         return 1;
     }
-
     return 0;
-}
+}/*isAltroRamoPiuVicino*/
+
 /*Cerca nel sottoalbero non ancora controllato se e' presente un punto piu' vicino dei due migliori
 finora, questa funzione verra' chiamata solo se isAltroRamoPiuVicino ritorna 1
 Le IS sono le stesse di nearestSearchBSP tranne:
@@ -105,7 +107,8 @@ void controllaAltroRamoBSP(BSPNodo *root, double *distanzaMigliore, double *seco
                              nodoPiuVicino, secondoNodoPiuVicino, puntoCercato, !asse);
         }
     }
-}
+}/*controllaAltroRamoBSP*/
+
 /*funzione di appoggio per nearestSearchBSP che aggiorna le due distanze migliori e i due nodi piu'
 vicini nel caso in cui ne vengano trovati di piu vicini le IS sono le stesse di nearestSearchBSP
 tranne:
@@ -124,7 +127,8 @@ void aggiornaDistanzeSearchBSP(double distanzaRootPunto, double *distanzaMiglior
         *secondoNodoPiuVicino = *root;
         *secondaDistanzaMigliore = distanzaRootPunto;
     }
-}
+}/*aggiornaDistanzeSearchBSP*/
+
 /*Cerca nell'albero binario di radice $root i due punti piu vicini a $puntoCercato, il piu vicino
    sara' $puntoCercato stesso, il secondo sara' il punto che ci interessava trovare per computare la
    distanza minima. La ricerca ricorre fino alle foglie ceracando un migliore temporaneo e poi
@@ -173,7 +177,8 @@ void nearestSearchBSP(BSPNodo *root, double *distanzaMigliore, double *secondaDi
                               secondoNodoPiuVicino, puntoCercato, asse, allaSinistra);
     }
     return;
-}
+}/*nearestSearchBSP*/
+
 /*libera la memoria allocata nella creazione dell'albero binario ramite una visita in PostOrder
 IOP p nodo di cui va liberata la memoria
 */
@@ -184,9 +189,9 @@ void liberaBSP(BSPNodo *p) {
     liberaBSP(p->figlioDx);
     liberaBSP(p->figlioSx);
     free(p);
-}
+}/*liberaBSP*/
 
-/*Funzione utile al debug che printa i nodi dell'albero con una visita InOrder
+/*Funzione utile per il debug che printa i nodi dell'albero con una visita InOrder
 IP root nodo da visitare in questa ricorsione
 */
 void preOrder(const BSPNodo *root) {
@@ -197,4 +202,4 @@ void preOrder(const BSPNodo *root) {
     if (root->figlioDx != NULL) {
         preOrder(root->figlioDx);
     }
-}
+}/*preOrder*/

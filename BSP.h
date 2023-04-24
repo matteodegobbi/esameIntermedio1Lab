@@ -1,3 +1,4 @@
+/*De Gobbi Matteo*/
 #ifndef PUNTO2D
 #define PUNTO2D
 #include "Punto2D.h"
@@ -13,3 +14,4 @@ void nearestSearchBSP(BSPNodo* root, double* distanzaMigliore, double* secondaDi
                       char asse);
 BSPNodo* buildBSP(Punto2D arrayCopia[], int nP, char asse);
 void preOrder(const BSPNodo* root);
+void liberaBSP(BSPNodo *p);
