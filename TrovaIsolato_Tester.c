@@ -27,7 +27,7 @@ int main(void)
     start_t=clock();
     for (i = 0; i < N_ITER; i++)
     {
-        result=trovaIsolato(aP,nP);
+        result=trovaIsolatoLineare(aP,nP);
     }
     end_t = clock();
     printf("passati: %fs\n",(double)(end_t-start_t)/CLOCKS_PER_SEC);

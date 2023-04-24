@@ -2,13 +2,14 @@
 #define PUNTO2D
 #include "Punto2D.h"
 #endif
-typedef struct BSPNodo
-{
+typedef struct BSPNodo {
     struct BSPNodo* figlioSx;
     struct BSPNodo* figlioDx;
     Punto2D punto;
-}BSPNodo;
+} BSPNodo;
 
-void nearestSearchBSP(BSPNodo* root,double* distanzaMigliore,double *secondaDistanzaMigliore,BSPNodo* nodoPiuVicino,BSPNodo* secondoNodoPiuVicino,Punto2D* puntoCercato,char asse);
+void nearestSearchBSP(BSPNodo* root, double* distanzaMigliore, double* secondaDistanzaMigliore,
+                      BSPNodo* nodoPiuVicino, BSPNodo* secondoNodoPiuVicino, Punto2D* puntoCercato,
+                      char asse);
 BSPNodo* buildBSP(Punto2D arrayCopia[], int nP, char asse);
-void preOrder(BSPNodo* root);
+void preOrder(const BSPNodo* root);

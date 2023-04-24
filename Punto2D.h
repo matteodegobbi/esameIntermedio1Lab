@@ -6,6 +6,7 @@ typedef struct Punto2D{
     double x,y;
 } Punto2D;
 
+int trovaIsolatoLineare(const Punto2D aP[], int nP);
 int trovaIsolato(const Punto2D aP[], int nP);
 double distanzaMinima(const Punto2D aP[],int nP,int indicePunto);
 double distanzaEuclideaAlla2(const Punto2D* a,const Punto2D* b);
